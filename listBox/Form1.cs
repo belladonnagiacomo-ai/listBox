@@ -6,16 +6,7 @@ namespace listBox
         public Form1()
         {
             InitializeComponent();
-            origineD.Add("cane");
-            origineD.Add("lupo");
-            origineD.Add("gatto");
-            origineD.Add("leone");
-            origineD.Add("gallina");
-            origineD.Add("giraffa");
-            origineD.Add("coniglio");
-            origineD.Add("pollo");
-            origineD.Add("piccione");
-            origineD.Add("lumaca");
+            caricaDati("dati.txt");
             aggiorna();
         }
 
@@ -43,7 +34,17 @@ namespace listBox
 
         private void rim_Click(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
+            int indice = listBox1.SelectedIndex;
+            if(indice == -1)
+            {
+                MessageBox.Show("Non hai selezionato nessun elemento");
+            }
+            else
+            {
+                origineD.RemoveAt(indice);
+                aggiorna();
+            }
+                
         }
 
         private void aggiorna()
@@ -72,9 +73,45 @@ namespace listBox
             return false;
         }
 
-
+        private void caricaDati(string fileName)
+        {
+            if(!File.Exists(fileName))
+            {
+                MessageBox.Show("Il file non esiste");
+            }
+            else
+            {
+                using (StreamReader sr = new StreamReader(fileName))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string riga = sr.ReadLine();
+                        if(controlloStringa(riga) == true)
+                        {
+                            riga = riga.Trim();
+                            riga = riga.ToLower();
+                            origineD.Add(riga);
+                        }
+                    }
+                }
+            }
+            
+        }
         private void mod_Click(object sender, EventArgs e)
         {
+            int indice = listBox1.SelectedIndex;
+            if(indice == -1 || textBox1.Text != null)
+            {
+                MessageBox.Show("Non hai selezionato niente");
+            }
+            else
+            {
+                origineD[indice] = textBox1.Text;
+                aggiorna();
+            }
+
+
+
 
         }
     }
