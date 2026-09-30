@@ -3,11 +3,11 @@ namespace listBox
     public partial class Form1 : Form
     {
         List<string> origineD = new List<string>();
+        string nomeFile;
         public Form1()
         {
             InitializeComponent();
-            caricaDati("dati.txt");
-            aggiorna();
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -113,13 +113,27 @@ namespace listBox
 
         private void Salva_Click(object sender, EventArgs e)
         {
-            File.Delete("dati.txt");
-            using(StreamWriter sw = new StreamWriter("dati.txt"))
+            using (StreamWriter sw = new StreamWriter(nomeFile, false))
             {
-                foreach(string i in origineD)
+                foreach (string i in origineD)
                 {
                     sw.WriteLine(i);
                 }
+            }
+        }
+
+        private void carica_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if(ofd.ShowDialog() == DialogResult.OK)
+            {
+                nomeFile = ofd.FileName;
+                caricaDati(nomeFile);
+                aggiorna();
+            }
+            else
+            {
+                MessageBox.Show("Nessun file selezionato");
             }
         }
     }

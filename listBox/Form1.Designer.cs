@@ -38,6 +38,7 @@
             modEl = new Label();
             textBox1 = new TextBox();
             Salva = new Button();
+            carica = new Button();
             SuspendLayout();
             // 
             // listBox1
@@ -123,7 +124,7 @@
             // 
             // Salva
             // 
-            Salva.Location = new Point(369, 274);
+            Salva.Location = new Point(404, 274);
             Salva.Name = "Salva";
             Salva.Size = new Size(75, 23);
             Salva.TabIndex = 10;
@@ -131,11 +132,22 @@
             Salva.UseVisualStyleBackColor = true;
             Salva.Click += Salva_Click;
             // 
+            // carica
+            // 
+            carica.Location = new Point(333, 245);
+            carica.Name = "carica";
+            carica.Size = new Size(75, 23);
+            carica.TabIndex = 11;
+            carica.Text = "Carica file";
+            carica.UseVisualStyleBackColor = true;
+            carica.Click += carica_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1359, 646);
+            Controls.Add(carica);
             Controls.Add(Salva);
             Controls.Add(modEl);
             Controls.Add(textBox1);
@@ -163,5 +175,6 @@
         private Label modEl;
         private TextBox textBox1;
         private Button Salva;
+        private Button carica;
     }
 }
