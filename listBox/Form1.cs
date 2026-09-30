@@ -35,7 +35,7 @@ namespace listBox
         private void rim_Click(object sender, EventArgs e)
         {
             int indice = listBox1.SelectedIndex;
-            if(indice == -1)
+            if (indice == -1)
             {
                 MessageBox.Show("Non hai selezionato nessun elemento");
             }
@@ -44,7 +44,7 @@ namespace listBox
                 origineD.RemoveAt(indice);
                 aggiorna();
             }
-                
+
         }
 
         private void aggiorna()
@@ -62,7 +62,7 @@ namespace listBox
             {
                 return false;
             }
-            
+
             for (int i = 0; i < x.Length; i++)
             {
                 if (x[i] != ' ')
@@ -75,7 +75,7 @@ namespace listBox
 
         private void caricaDati(string fileName)
         {
-            if(!File.Exists(fileName))
+            if (!File.Exists(fileName))
             {
                 MessageBox.Show("Il file non esiste");
             }
@@ -86,7 +86,7 @@ namespace listBox
                     while (!sr.EndOfStream)
                     {
                         string riga = sr.ReadLine();
-                        if(controlloStringa(riga) == true)
+                        if (controlloStringa(riga) == true)
                         {
                             riga = riga.Trim();
                             riga = riga.ToLower();
@@ -95,12 +95,12 @@ namespace listBox
                     }
                 }
             }
-            
+
         }
         private void mod_Click(object sender, EventArgs e)
         {
             int indice = listBox1.SelectedIndex;
-            if(indice == -1 || textBox1.Text != null)
+            if (indice == -1 || textBox1.Text == null)
             {
                 MessageBox.Show("Non hai selezionato niente");
             }
@@ -109,10 +109,18 @@ namespace listBox
                 origineD[indice] = textBox1.Text;
                 aggiorna();
             }
+        }
 
-
-
-
+        private void Salva_Click(object sender, EventArgs e)
+        {
+            File.Delete("dati.txt");
+            using(StreamWriter sw = new StreamWriter("dati.txt"))
+            {
+                foreach(string i in origineD)
+                {
+                    sw.WriteLine(i);
+                }
+            }
         }
     }
 }

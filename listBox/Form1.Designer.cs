@@ -37,6 +37,7 @@
             label1 = new Label();
             modEl = new Label();
             textBox1 = new TextBox();
+            Salva = new Button();
             SuspendLayout();
             // 
             // listBox1
@@ -120,11 +121,22 @@
             textBox1.Size = new Size(126, 23);
             textBox1.TabIndex = 8;
             // 
+            // Salva
+            // 
+            Salva.Location = new Point(369, 274);
+            Salva.Name = "Salva";
+            Salva.Size = new Size(75, 23);
+            Salva.TabIndex = 10;
+            Salva.Text = "Salva";
+            Salva.UseVisualStyleBackColor = true;
+            Salva.Click += Salva_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1359, 646);
+            Controls.Add(Salva);
             Controls.Add(modEl);
             Controls.Add(textBox1);
             Controls.Add(label1);
@@ -150,5 +162,6 @@
         private Label label1;
         private Label modEl;
         private TextBox textBox1;
+        private Button Salva;
     }
 }
